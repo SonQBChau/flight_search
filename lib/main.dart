@@ -1,6 +1,8 @@
 import 'package:flight_search/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
+
+// https://marcinszalek.pl/flutter/ui-challenge-flight-search/
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
