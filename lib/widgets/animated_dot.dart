@@ -29,3 +29,4 @@ class AnimatedDot extends AnimatedWidget {
           )),
     );
   }
+}
