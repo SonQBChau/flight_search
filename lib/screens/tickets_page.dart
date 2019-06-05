@@ -1,4 +1,5 @@
 import 'package:flight_search/models/flight_stop_ticket.dart';
+import 'package:flight_search/screens/home_page.dart';
 import 'package:flight_search/widgets/air_asia_bar.dart';
 import 'package:flight_search/widgets/ticket_card.dart';
 import 'package:flutter/material.dart';
@@ -17,16 +18,43 @@ class _TicketsPageState extends State<TicketsPage>
     new FlightStopTicket("Ireland", "IRE", "Sahara", "SHE", "MR4321"),
   ];
 
+  AnimationController cardEntranceAnimationController;
+  List<Animation> ticketAnimations;
+  Animation fabAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    cardEntranceAnimationController = new AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1100),
+    );
+    ticketAnimations = stops.map((stop) {
+      int index = stops.indexOf(stop);
+      double start = index * 0.1;
+      double duration = 0.6;
+      double end = duration + start;
+      return new Tween<double>(begin: 800.0, end: 0.0).animate(
+          new CurvedAnimation(
+              parent: cardEntranceAnimationController,
+              curve: new Interval(start, end, curve: Curves.decelerate)));
+    }).toList();
+    fabAnimation = new CurvedAnimation(
+        parent: cardEntranceAnimationController,
+        curve: Interval(0.7, 1.0, curve: Curves.decelerate));
+    cardEntranceAnimationController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Stack(
+      body:  Stack(
         children: <Widget>[
           AirAsiaBar(height: 180.0,),
           Positioned.fill(
             top: MediaQuery.of(context).padding.top + 64.0,
             child: SingleChildScrollView(
-              child: new Column(
+              child:  Column(
                 children: _buildTickets().toList(),
               ),
             ),
@@ -40,17 +68,35 @@ class _TicketsPageState extends State<TicketsPage>
 
   Iterable<Widget> _buildTickets() {
     return stops.map((stop) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-        child: TicketCard(stop: stop),
+      int index = stops.indexOf(stop);
+      return AnimatedBuilder(
+        animation: cardEntranceAnimationController,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+          child: TicketCard(stop: stop),
+        ),
+        builder: (context, child) => new Transform.translate(
+          offset: Offset(0.0, ticketAnimations[index].value),
+          child: child,
+        ),
       );
     });
   }
 
   _buildFab() {
-    return FloatingActionButton(
-      onPressed: () => Navigator.of(context).pop(),
-      child: new Icon(Icons.fingerprint),
+    return ScaleTransition(
+      scale: fabAnimation,
+      child: FloatingActionButton(
+//        onPressed: () => Navigator.of(context).pop(),
+//          onPressed: (){
+//            Navigator.push(
+//              context,
+//              MaterialPageRoute(builder: (context) => HomePage()),
+//            );
+//          },
+        onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false),
+        child: new Icon(Icons.fingerprint),
+      ),
     );
   }
 }

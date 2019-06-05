@@ -3,6 +3,7 @@ import 'package:flight_search/models/flight_stop.dart';
 import 'package:flight_search/screens/tickets_page.dart';
 import 'package:flight_search/widgets/animated_dot.dart';
 import 'package:flight_search/widgets/animated_plan_icon.dart';
+import 'package:flight_search/widgets/fade_row.dart';
 import 'package:flight_search/widgets/flight_stop_card.dart';
 import 'package:flutter/material.dart';
 
@@ -166,7 +167,7 @@ class _PriceTabState extends State<PriceTab> with TickerProviderStateMixin {
     )..addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         Future.delayed(Duration(milliseconds: 500), () {
-//          widget?.onPlaneFlightStart();
+          widget?.onPlaneFlightStart();
           _planeTravelController.forward();
         });
         Future.delayed(Duration(milliseconds: 700), () {
