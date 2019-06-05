@@ -1,5 +1,6 @@
 
 import 'package:flight_search/models/flight_stop.dart';
+import 'package:flight_search/screens/tickets_page.dart';
 import 'package:flight_search/widgets/animated_dot.dart';
 import 'package:flight_search/widgets/animated_plan_icon.dart';
 import 'package:flight_search/widgets/flight_stop_card.dart';
@@ -149,7 +150,9 @@ class _PriceTabState extends State<PriceTab> with TickerProviderStateMixin {
       child: ScaleTransition(
         scale: _fabAnimation,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => Navigator
+              .of(context)
+              .push(FadeRoute(builder: (context) => TicketsPage())), //<-- Navigation
           child: Icon(Icons.check, size: 36.0),
         ),
       ),
