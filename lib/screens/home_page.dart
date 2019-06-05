@@ -1,6 +1,6 @@
 
 
-import 'package:flight_search/screens/rounded_button.dart';
+import 'package:flight_search/widgets/rounded_button.dart';
 import 'package:flight_search/widgets/air_asia_bar.dart';
 import 'package:flight_search/widgets/button_row.dart';
 import 'package:flight_search/widgets/content_card.dart';

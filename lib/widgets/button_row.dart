@@ -1,5 +1,5 @@
 
-import 'package:flight_search/screens/rounded_button.dart';
+import 'package:flight_search/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 
 class ButtonRow extends StatelessWidget {
