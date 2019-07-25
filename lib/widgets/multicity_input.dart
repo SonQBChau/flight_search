@@ -73,7 +73,7 @@ class MulticityInput extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 16.0),
                     child: TextFormField(
-                      decoration: InputDecoration(labelText: "Arrival"),
+                      decoration: InputDecoration(labelText: "Return"),
                     ),
                   ),
                 ),

@@ -23,9 +23,9 @@ class _PriceTabState extends State<PriceTab> with TickerProviderStateMixin {
   final double _minPlanePaddingTop = 16.0;
   final List<FlightStop> _flightStops = [
     FlightStop("JFK", "ORY", "JUN 05", "6h 25m", "\$851", "9:26 am - 3:43 pm"),
-    FlightStop("MRG", "FTB", "JUN 20", "6h 25m", "\$532", "9:26 am - 3:43 pm"),
-    FlightStop("ERT", "TVS", "JUN 20", "6h 25m", "\$718", "9:26 am - 3:43 pm"),
-    FlightStop("KKR", "RTY", "JUN 20", "6h 25m", "\$663", "9:26 am - 3:43 pm"),
+    FlightStop("MRG", "FTB", "JUN 06", "8h 13m", "\$532", "7:33 pm - 4:27 am"),
+    FlightStop("ERT", "TVS", "JUN 09", "2h 30m", "\$718", "11:50 am - 2:30 pm"),
+    FlightStop("KKR", "RTY", "JUN 11", "5h 45m", "\$663", "10:26 am - 4:10 pm"),
   ];
   final List<GlobalKey<FlightStopCardState>> _stopKeys = [];
 
